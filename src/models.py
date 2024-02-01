@@ -20,14 +20,14 @@ class User(Base):
     rut = Column(String(250), nullable=False)
     address = Column(String(250), nullable=False)
 
-def serialize_1(self):
-    return {
-      'user_id': self.user_id,
-      'name': self.name,
-      'email': self.email,
-      'rut': self.rut,
-      'address': self.address
-    }
+    def serialize_1(self):
+        return {
+        'user_id': self.user_id,
+        'name': self.name,
+        'email': self.email,
+        'rut': self.rut,
+        'address': self.address
+        }
 
     
 class Pets(Base):
@@ -49,24 +49,24 @@ class Pets(Base):
     doctor_notes = Column(String(200))
     status = Column(bool)
 
-def serialize_2(self):
-    return {
-    'pet_id':self.pet_id,
-    'user_id':self.user_id,
-    'image':self.image,
-    'name':self.name,
-    'species':self.species,
-    'date_of_birth' : self.date_of_birth,
-    'age':self.age,
-    'color':self.color,
-    'sterilized':self.sterilized,
-    'weigth':self.weigth,
-    'height':self.height,
-    'breed':self.breed,
-    'allergies':self.allergies,
-    'aditional_info':self.aditional_info,
-    'doctor_notes':self.doctor_notes,
-    'status':self.status
+    def serialize_2(self):
+        return {
+        'pet_id':self.pet_id,
+        'user_id':self.user_id,
+        'image':self.image,
+        'name':self.name,
+        'species':self.species,
+        'date_of_birth' : self.date_of_birth,
+        'age':self.age,
+        'color':self.color,
+        'sterilized':self.sterilized,
+        'weigth':self.weigth,
+        'height':self.height,
+        'breed':self.breed,
+        'allergies':self.allergies,
+        'aditional_info':self.aditional_info,
+        'doctor_notes':self.doctor_notes,
+        'status':self.status
     }
     
 class Veterinarians(Base):
@@ -76,13 +76,13 @@ class Veterinarians(Base):
     specialty = Column(Integer, nullable=False)
     position = Column(Integer, unique=False)
 
-def serialize_3(self):
-    return {
-    'vet_id':self.vet_id,
-    'user_id':self.user_id,
-    'specialty':self.specialty,
-    'position':self.position
-    }
+    def serialize_3(self):
+        return {
+        'vet_id':self.vet_id,
+        'user_id':self.user_id,
+        'specialty':self.specialty,
+        'position':self.position
+        }
     
 class Vaccines(Base):
     __tablename__ = 'vaccines'
@@ -95,17 +95,17 @@ class Vaccines(Base):
     type_of_vaccine = Column(String(200))
     lote = Column(String(200))
 
-def serialize_4(self):
-    return {
-    'vac_id':self.vac_id,
-    'pet_id':self.pet_id,
-    'vet_id':self.vet_id,
-    'user_id':self.user_id,
-    'appointment':self.appointment,
-    'dose' : self.dose,
-    'type_of_vaccine':self.type_of_vaccine,
-    'lote':self.lote
-    }
+    def serialize_4(self):
+        return {
+        'vac_id':self.vac_id,
+        'pet_id':self.pet_id,
+        'vet_id':self.vet_id,
+        'user_id':self.user_id,
+        'appointment':self.appointment,
+        'dose' : self.dose,
+        'type_of_vaccine':self.type_of_vaccine,
+        'lote':self.lote
+        }
     
 class Appointment(Base):
     __tablename__ = 'appointment'
@@ -120,18 +120,18 @@ class Appointment(Base):
     payment_status = Column(Integer, nullable=False)
 
 
-def serialize_5(self):
-    return {
-    'appointment_id':self.appointment_id,
-    'date':self.date,
-    'time':self.time,
-    'vet_id':self.vet_id,
-    'user_id':self.user_id,
-    'pet_id' : self.pet_id,
-    'comments':self.comments,
-    'type_of_visit':self.type_of_visit,
-    'payments_status':self.payments_status
-    }
+    def serialize_5(self):
+        return {
+        'appointment_id':self.appointment_id,
+        'date':self.date,
+        'time':self.time,
+        'vet_id':self.vet_id,
+        'user_id':self.user_id,
+        'pet_id' : self.pet_id,
+        'comments':self.comments,
+        'type_of_visit':self.type_of_visit,
+        'payments_status':self.payments_status
+        }
 
 class Prescriptions(Base):
     __tablename__ = 'prescriptions'
@@ -140,10 +140,10 @@ class Prescriptions(Base):
     image = Column(String(200))
     content = Column(String(200))
 
-def serialize_6(self):
-    return {
-    'prescription_id':self.prescription_id,
-    'appointment_id':self.appointment_id,
-    'image':self.image,
-    'content':self.content
-    }
+    def serialize_6(self):
+        return {
+        'prescription_id':self.prescription_id,
+        'appointment_id':self.appointment_id,
+        'image':self.image,
+        'content':self.content
+        }
