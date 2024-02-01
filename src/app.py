@@ -51,11 +51,11 @@ def create():
 
 @app.route("/register", methods=["POST"])
 def register():
-  get_from_body = request.json.get("email")
+  get_email_from_body = request.json.get("email")
+  get_rut_from_body = request.json.get("rut")
   user = User()
-  existing_user = User.query.filter_by(email=get_from_body).first()
-  existing_rut = User.query.filter_by(rut=get_from_body).first()
-  if existing_user is not None or existing_rut is not None:
+  existing_user = User.query.filter_by(email=get_email_from_body, rut= get_rut_from_body).first()
+  if existing_user is not None:
     return "User already exists"
   else:
     user.name = request.json.get("name")
@@ -72,26 +72,18 @@ def register():
 
 #LOGIN GET METHOD
 
-@app.route("/login", methods=["GET"])
+@app.route("/login", methods=["POST"])
 def login():
-  get_from_body = request.json.get("email")
-  user = User()
-  existing_user = User.query.filter_by(email=get_from_body).first()
-  existing_rut = User.query.filter_by(rut=get_from_body).first()
-  if existing_user is not None or existing_rut is not None:
-    return "User already exists"
+  login_email = request.json.get("email")
+  login_password = request.json.get("password")
+  user = User.query.filter_by(login_email = "email").first()
+  if user is not None:
+    if user.password == login_password:
+      return f"Login accepted", 200
+    else:
+      return f"Invalid email or password", 401
   else:
-    user.name = request.json.get("name")
-    user.rut = request.json.get("rut")
-    user.email = request.json.get("email")
-    user.address = request.json.get("address")
-    user.password = request.json.get("password")
-    user.phone_number = request.json.get("phone_number")
-
-    db.session.add(user)
-    db.session.commit()
-
-  return f"User created", 201
+    return f"Invalid email or password", 401
 
 
 # this only runs if `$ python src/app.py` is executed
